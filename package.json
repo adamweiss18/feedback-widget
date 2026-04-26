@@ -1,6 +1,6 @@
 {
   "name": "@dnosaj/feedback-widget",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Drop-in floating feedback widget for React prototypes.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -18,7 +18,8 @@
     "dev": "tsup --watch",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepare": "tsup"
   },
   "peerDependencies": {
     "react": ">=18",
