@@ -63,7 +63,7 @@ export function Panel(p: Props) {
             disabled={p.busy}
             type="button"
           >
-            {p.screenshotAttached ? "Screenshot attached ✓" : "Attach screenshot"}
+            {p.screenshotAttached ? "Screenshot attached ✓" : "Capture screen"}
           </button>
           {!p.screenshotAttached && <span className="hint">optional</span>}
         </div>
