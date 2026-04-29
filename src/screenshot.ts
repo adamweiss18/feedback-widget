@@ -1,4 +1,4 @@
-import html2canvas from "html2canvas";
+import html2canvas from "html2canvas-pro";
 
 export async function captureViewport(): Promise<Blob> {
   const canvas = await html2canvas(document.body, {

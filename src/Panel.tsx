@@ -1,13 +1,12 @@
-import { useState } from "react";
 import type { Category } from "@/types";
 import { Chips } from "@/Chips";
 
 type Props = {
   open: boolean;
   sentCount: number;
-  defaultName: string;
-  defaultCategory: Category;
-  defaultDraft: string;
+  name: string;
+  category: Category;
+  draft: string;
   pageInfo: { page_path: string; viewport: string; timestamp: string };
   justSent: boolean;
   busy: boolean;
@@ -22,15 +21,7 @@ type Props = {
 };
 
 export function Panel(p: Props) {
-  const [name, setName] = useState(p.defaultName);
-  const [category, setCategory] = useState<Category>(p.defaultCategory);
-  const [draft, setDraft] = useState(p.defaultDraft);
-
   if (!p.open) return null;
-
-  function handleName(v: string) { setName(v); p.onNameChange(v); }
-  function handleCategory(c: Category) { setCategory(c); p.onCategoryChange(c); }
-  function handleDraft(v: string) { setDraft(v); p.onDraftChange(v); }
 
   return (
     <div className="fbw-panel" role="dialog" aria-label="Leave feedback">
@@ -52,17 +43,17 @@ export function Panel(p: Props) {
         <input
           className="fbw-input"
           placeholder="Your name (optional)"
-          value={name}
-          onChange={(e) => handleName(e.target.value)}
+          value={p.name}
+          onChange={(e) => p.onNameChange(e.target.value)}
         />
 
-        <Chips value={category} onChange={handleCategory} />
+        <Chips value={p.category} onChange={p.onCategoryChange} />
 
         <textarea
           className="fbw-textarea"
           placeholder="What's on your mind?"
-          value={draft}
-          onChange={(e) => handleDraft(e.target.value)}
+          value={p.draft}
+          onChange={(e) => p.onDraftChange(e.target.value)}
         />
 
         <div className="fbw-attach-row">
@@ -81,7 +72,7 @@ export function Panel(p: Props) {
           page: {p.pageInfo.page_path} · viewport: {p.pageInfo.viewport} · {p.pageInfo.timestamp}
         </div>
 
-        <button className="fbw-send" onClick={p.onSend} disabled={p.busy || !draft.trim()} type="button">
+        <button className="fbw-send" onClick={p.onSend} disabled={p.busy || !p.draft.trim()} type="button">
           {p.busy ? "Sending…" : "Send feedback"}
         </button>
 

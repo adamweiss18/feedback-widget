@@ -170,9 +170,9 @@ function WidgetInner({ projectSlug, userName, position = "bottom-right", apiUrl,
       <Panel
         open={open}
         sentCount={sentCount}
-        defaultName={name}
-        defaultCategory={category}
-        defaultDraft={draft}
+        name={name}
+        category={category}
+        draft={draft}
         pageInfo={pageInfo}
         justSent={!!justSent}
         busy={busy}

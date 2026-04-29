@@ -56,6 +56,22 @@ describe("FeedbackWidget", () => {
     expect(screen.getByText(/1 sent/i)).toBeInTheDocument();
   });
 
+  it("clears the textarea after a successful send", async () => {
+    submitMock.mockResolvedValue({ id: "fb-2", created_at: "2026-04-24T10:00:00Z", undo_token: "tok" });
+
+    render(<FeedbackWidget projectSlug="demo" apiUrl="https://api.example.com" />);
+    fireEvent.click(screen.getByRole("button", { name: /open feedback/i }));
+
+    const textarea = screen.getByPlaceholderText(/what's on your mind\?/i) as HTMLTextAreaElement;
+    fireEvent.change(textarea, { target: { value: "Some feedback" } });
+    expect(textarea.value).toBe("Some feedback");
+
+    fireEvent.click(screen.getByRole("button", { name: /send feedback/i }));
+
+    await waitFor(() => expect(submitMock).toHaveBeenCalled());
+    await waitFor(() => expect(textarea.value).toBe(""));
+  });
+
   it("respects hideOnPaths by not rendering", () => {
     // jsdom starts at http://localhost/; hide on that path
     const { container } = render(

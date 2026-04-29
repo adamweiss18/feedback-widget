@@ -1,6 +1,6 @@
 {
   "name": "@dnosaj/feedback-widget",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Drop-in floating feedback widget for React prototypes.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -12,7 +12,10 @@
       "require": "./dist/index.js"
     }
   },
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -26,7 +29,7 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "html2canvas": "^1.4.1"
+    "html2canvas-pro": "^1.6.7"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
